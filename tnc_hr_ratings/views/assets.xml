@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="HR assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/tnc_hr_ratings/static/src/js/menu.js"></script>
+            <link rel="stylesheet" type="text/scss" href="/tnc_hr_ratings/static/src/scss/menu.scss"/>
+        </xpath>
+    </template>
+</odoo>
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="rating_notification_to_hr_email" model="mail.template">
+            <field name="name">Notification for update employee ratings at month end</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="email_from">${object.company_id and object.company_id.partner_id and object.company_id.partner_id.email_formatted|safe}</field>
+            <field name="email_to">${object.email_formatted|safe}</field>
+            <field name="subject">Notification for update employee ratings at month ${ctx.get('month_year') or ''} end</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <p>Dear ${object.name or 'Madam, Sir'},</p>
+                        <br/>
+
+                        <p>The performance review process is in full flow now, and we hope the employees under you have begun to submit their self-evaluation forms.</p>
+                        <br/>
+
+                        <p>This is a friendly reminder that you have ${ctx.get('no_of_days') or ''} days until ${ctx.get('last_date') or ''} to review their self-evaluation. Please schedule an appointment with the employees individually to discuss their self-evaluation performance review and meet with their team members to evaluate the employee in review directly.</p>
+                        <br/>
+
+                        <p>If you have any questions or there's anything at all you're unclear about, don't hesitate to get in touch with me directly.</p>
+
+                        <br/>
+                        <p>Kind regards,</p>
+                        % if object.company_id.name and object.company_id.email:
+                            ${object.company_id.name or ''}
+                        % endif
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.lang}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+    </data>
+</odoo>
